@@ -1,6 +1,6 @@
 <map version="freeplane 1.11.1">
 <!--To view this file, download free mind mapping software Freeplane from https://www.freeplane.org -->
-<node TEXT="pseudoFreeplaneAPI" FOLDED="false" POSITION="bottom_or_right" ID="ID_1219678732"><hook NAME="MapStyle" background="#f9f9f8" zoom="0.9">
+<node TEXT="pseudoFreeplaneAPI" FOLDED="false" POSITION="bottom_or_right" ID="ID_1219678732" LINK="https://github.com/EdoFro/Freeplane_Pseudo-Freeplane-API"><hook NAME="MapStyle" background="#f9f9f8" zoom="0.9">
     <properties edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" show_icon_for_attributes="true" mapUsesOwnSaveOptions="true" save_modification_times="false" save_last_visited_node="default" associatedTemplateLocation="file:/C:/Users/Edo/Documents/GitHub/Freeplane_MarkdownHelper/MarkdownHelper/MarkdownHelper.mm" show_note_icons="true" save_folding="default" fit_to_viewport="false"/>
 
 <map_styles>

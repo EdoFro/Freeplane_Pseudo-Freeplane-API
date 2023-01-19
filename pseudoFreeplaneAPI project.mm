@@ -457,7 +457,6 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
 <node TEXT="hacer que UserStyles sea una librería por si misma (pseudoFreeplaneApi)" STYLE_REF="pendingTask" ID="ID_1646456724">
 <node TEXT="la versión más actualizada es la de groovyNode" ID="ID_1038633785"/>
 </node>
-<node TEXT="carpeta Base" ID="ID_1074493602">
 <node TEXT="files" ID="ID_1881706571">
 <node TEXT=".gitattributes" ID="ID_1864551314"><richcontent CONTENT-TYPE="xml/" TYPE="DETAILS">
 <html>
@@ -607,237 +606,7 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
 <node TEXT="version.properties" ID="ID_1149127560" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/version.properties"/>
 <node TEXT="versiones anteriores" STYLE_REF="Organizador" ID="ID_270665900"/>
 </node>
-<node TEXT="build.gradle" ID="ID_782704491" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/build.gradle"><richcontent TYPE="NOTE" CONTENT-TYPE="xml/">
-<html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      apply plugin: 'groovy'
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      targetCompatibility='1.8'
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      // 1. I have to define which freeplane version is going to be used to look at the libreries (freeplane and groovy)
-    </p>
-    <p>
-      def FPversion = 'v10_USS'
-    </p>
-    <p>
-      def freeplaneDirs = [
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instaled&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &quot;C:/Program Files/Freeplane&quot;,
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v10_portableApps : &quot;C:/PortableApps/FreeplanePortable/App/Freeplane&quot;,
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v9_15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &quot;C:/Freeplane/freeplane-1.9.15-pre01&quot;,
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v10_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &quot;C:/Freeplane/freeplane-1.10.2&quot;,
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v10_USS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &quot;C:/Users/eduardo.frohlich/PortableApps/FreeplanePortable/App/Freeplane&quot;
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;]
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      def freeplaneDir = freeplaneDirs[FPversion]
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      def groovyGroupId = FPversion.startsWith('v10')?'org.apache.groovy':'org.codehaus.groovy'
-    </p>
-    <p>
-      def groovyVersion = FPversion.startsWith('v10')?'4.0.1':'3.0.8'
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      libsDirName = &quot;${rootDir}/lib&quot;
-    </p>
-    <p>
-      clean.doFirst { delete &quot;${rootDir}/lib&quot; } // para eliminar todas las .jar
-    </p>
-    <p>
-      //clean.doFirst { delete &quot;${rootDir}/lib/Tutorial-o-Matic.jar&quot; } //para eliminar sólo una de las .jar y que no me borrara markedj ni jsoup
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      repositories {
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;mavenCentral()
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;flatDir name: 'localGitDepsRepository',
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;dirs: [
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;${freeplaneDir}&quot;,
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;${freeplaneDir}/core/org.freeplane.core/lib&quot;,
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;${freeplaneDir}/plugins/org.freeplane.plugin.script/lib&quot;,
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// &quot;${freeplaneDir}/plugins/org.freeplane.plugin.markdown/lib&quot;, // para incluir markedj.jar
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;${rootDir}/lib&quot; //ahí puse markedj y jsoup
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;]
-    </p>
-    <p>
-      }
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      // I had this error:
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;// Could not find method compile() for arguments [{name=freeplanelauncher}] on object of type org.gradle.api.internal.artifacts.dsl.dependencies.DefaultDependencyHandler
-    </p>
-    <p>
-      // answer:
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;// https://stackoverflow.com/questions/69733508/couldnt-find-compile-for-arguments-directory-libs-on-object-of-type-org-g
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      dependencies {
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;implementation name : 'freeplanelauncher'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;implementation name : 'freeplaneviewer'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;implementation group: 'org.freeplane.core',&nbsp;&nbsp;&nbsp;name: 'freeplaneeditor', version:&quot;+&quot;
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;implementation group: 'org.freeplane.script', name: 'plugin', version: '+'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;if(FPversion.startsWith('v10')){
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;implementation platform (&quot;${groovyGroupId}:groovy-all:${groovyVersion}&quot;.toString()) {
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude group:groovyGroupId, module:'groovy-test'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude group:groovyGroupId, module:'groovy-test-junit5'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude group:groovyGroupId, module:'groovy-testng'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude group:groovyGroupId, module:'groovy-ant'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude group:groovyGroupId, module:'groovy-docgenerator'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude group:groovyGroupId, module:'groovy-groovydoc'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude group:groovyGroupId, module:'groovy-cli-commons'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude group:groovyGroupId, module:'groovy-cli-picocli'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;} else {
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;implementation (&quot;${groovyGroupId}:groovy-all:${groovyVersion}&quot;.toString()) {
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude group:groovyGroupId, module:'groovy-test'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude group:groovyGroupId, module:'groovy-test-junit5'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude group:groovyGroupId, module:'groovy-testng'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude group:groovyGroupId, module:'groovy-ant'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude group:groovyGroupId, module:'groovy-docgenerator'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude group:groovyGroupId, module:'groovy-groovydoc'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude group:groovyGroupId, module:'groovy-cli-commons'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exclude group:groovyGroupId, module:'groovy-cli-picocli'
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;}
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;implementation &quot;${groovyGroupId}:groovy-dateutil:${groovyVersion}&quot;.toString()
-    </p>
-    <p>
-      }
-    </p>
-  </body>
-</html></richcontent>
-</node>
+<node TEXT="build.gradle" ID="ID_782704491" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/build.gradle"/>
 </node>
 <node TEXT="resources" ID="ID_1082925840" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/resources/"/>
 <node TEXT="ignoredByGitHub" ID="ID_689923647" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/ignoredByGitHub/"><richcontent CONTENT-TYPE="xml/" TYPE="DETAILS">
@@ -864,179 +633,16 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
   </body>
 </html></richcontent>
 </node>
-<node TEXT=".gitignore" ID="ID_1145140448" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/.gitignore"><richcontent TYPE="NOTE" CONTENT-TYPE="xml/">
-<html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      .gradle
-    </p>
-    <p>
-      **/build/
-    </p>
-    <p>
-      !src/**/build/
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      # Ignore Gradle GUI config
-    </p>
-    <p>
-      gradle-app.setting
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-    </p>
-    <p>
-      !gradle-wrapper.jar
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      # Cache of project
-    </p>
-    <p>
-      .gradletasknamecache
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-    </p>
-    <p>
-      # gradle/wrapper/gradle-wrapper.properties
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      # Addon maps
-    </p>
-    <p>
-      *.addon.mm
-    </p>
-    <p>
-      *.mm.bak
-    </p>
-    <p>
-      # version.properties
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      # ignore .jar files
-    </p>
-    <p>
-      *.jar
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      # ignore some folders
-    </p>
-    <p>
-      ignoredByGitHub/
-    </p>
-    <p>
-      delete/
-    </p>
-  </body>
-</html></richcontent>
-</node>
-<node TEXT="README.MD" ID="ID_297840923" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/README.MD"><richcontent TYPE="NOTE" CONTENT-TYPE="plain/markdown">
-    <text># Dummy readme file
-
-justa a **dummy** markdown file
-</text>
-</richcontent>
+<node TEXT=".gitignore" ID="ID_1145140448" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/.gitignore"/>
+<node TEXT=".gitattributes" ID="ID_142655800" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/.gitattributes"/>
+<node TEXT="README.MD" ID="ID_297840923" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/README.MD"><richcontent TYPE="NOTE" CONTENT-TYPE="plain/markdown"/>
 <node TEXT="README-pseudoFreeplaneAPI-MDH.mm" ID="ID_1438498132" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/README-pseudoFreeplaneAPI-MDH.mm"/>
 </node>
-<node TEXT="LICENSE.md" ID="ID_573744266" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/LICENSE.md"><richcontent TYPE="NOTE" CONTENT-TYPE="xml/">
-<html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      MIT License
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      Copyright (c) 2023 Eduardo Frohlich.
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      Permission is hereby granted, free of charge, to any person obtaining a copy
-    </p>
-    <p>
-      of this software and associated documentation files (the &quot;Software&quot;), to deal
-    </p>
-    <p>
-      in the Software without restriction, including without limitation the rights
-    </p>
-    <p>
-      to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    </p>
-    <p>
-      copies of the Software, and to permit persons to whom the Software is
-    </p>
-    <p>
-      furnished to do so, subject to the following conditions:
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      The above copyright notice and this permission notice shall be included in all
-    </p>
-    <p>
-      copies or substantial portions of the Software.
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    </p>
-    <p>
-      IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    </p>
-    <p>
-      FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    </p>
-    <p>
-      AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    </p>
-    <p>
-      LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    </p>
-    <p>
-      OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    </p>
-    <p>
-      SOFTWARE.
-    </p>
-  </body>
-</html></richcontent>
-</node>
+<node TEXT="LICENSE.md" ID="ID_573744266" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/LICENSE.md"/>
+<node TEXT="pseudoFreeplaneAPI project.mm" ID="ID_1406461886" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI%20project.mm"/>
 </node>
 <node TEXT="versión instalada en AddOns" STYLE_REF="locked" ID="ID_1156638211"/>
-<node TEXT="Tareas" STYLE_REF="Organizador" ID="ID_1348723799">
+<node TEXT="Tareas" STYLE_REF="Organizador" FOLDED="true" ID="ID_1348723799">
 <node TEXT="pasos para crear AddOn" STYLE_REF="Organizador" FOLDED="true" ID="ID_1390422265">
 <node TEXT="ayuda para crear config properties" ID="ID_129164981">
 <node TEXT="Example" ID="ID_1403952598">
@@ -1173,8 +779,6 @@ justa a **dummy** markdown file
 </node>
 </node>
 </node>
-</node>
-<node TEXT="pseudoFreeplaneAPI project.mm" ID="ID_1406461886" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI%20project.mm"/>
 <node TEXT="new imported files" STYLE_REF="newFolderImport" ID="ID_1122472053">
 <attribute NAME="log_MDI" VALUE="No"/>
 <richcontent TYPE="NOTE" CONTENT-TYPE="xml/">
@@ -1184,7 +788,7 @@ justa a **dummy** markdown file
   </head>
   <body>
     <p>
-      Inated:&nbsp;&nbsp;&nbsp;2023-01-18&nbsp;&nbsp;19:30:25
+      Inated:&nbsp;&nbsp;&nbsp;2023-01-18&nbsp;&nbsp;21:31:33
     </p>
     <p>
       
@@ -1199,7 +803,7 @@ justa a **dummy** markdown file
       &nbsp;0 link(s) corrected in nodes
     </p>
     <p>
-      &nbsp;1 new file(s) imported as node(s)&nbsp;
+      &nbsp;0 new file(s) imported as node(s)&nbsp;
     </p>
     <p>
       &nbsp;0 node(s) moved/renamed in drive
@@ -1211,7 +815,7 @@ justa a **dummy** markdown file
       ------- Folders: --------&nbsp;
     </p>
     <p>
-      21 folders didn't need to be moved&nbsp;
+      18 folders didn't need to be moved&nbsp;
     </p>
     <p>
       
@@ -1220,7 +824,7 @@ justa a **dummy** markdown file
       
     </p>
     <p>
-      0.5 seconds
+      0 seconds
     </p>
     <p>
       
