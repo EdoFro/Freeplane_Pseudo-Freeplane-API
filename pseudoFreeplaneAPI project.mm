@@ -1,39 +1,8 @@
-<map version="freeplane 1.11.1">
+<map version="freeplane 1.11.5">
 <!--To view this file, download free mind mapping software Freeplane from https://www.freeplane.org -->
 <attribute_registry SHOW_ATTRIBUTES="selected"/>
 <node TEXT="pseudoFreeplaneAPI project" FOLDED="false" ID="ID_1152474200" LINK="file:/E:/Respaldo%20EF/ef/Documentos%20con%20macros/08%20Freemind%20Groovy/scripts/ScriptsEnComputadorYDesarrollosEdo%20v1.9.mm"><hook NAME="MapStyle" background="#f9f9f8">
     <conditional_styles>
-        <conditional_style ACTIVE="true" STYLE_REF="file" LAST="false">
-            <script_condition>
-                <script>{node.link?.uri?.scheme == &apos;file&apos;}</script>
-            </script_condition>
-        </conditional_style>
-        <conditional_style ACTIVE="true" STYLE_REF="modifiedFile" LAST="false">
-            <attribute_contains_condition ATTRIBUTE="modifiedFile" VALUE="true"/>
-        </conditional_style>
-        <conditional_style ACTIVE="true" STYLE_REF="file_folder" LAST="false">
-            <script_condition>
-                <script>(node.link?.uri?.scheme == &apos;file&apos; &amp;&amp; node.link.uri.path.takeRight(1) == &apos;/&apos;)</script>
-            </script_condition>
-        </conditional_style>
-        <conditional_style ACTIVE="false" STYLE_REF="file_folder_with_icon" LAST="false">
-            <conjunct_condition>
-                <script_condition>
-                    <script>import org.freeplane.core.util.FreeplaneVersion&#xd;
-return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) || !(node.link?.uri?.scheme == &apos;file&apos;) )</script>
-                </script_condition>
-                <style_equals_condition TEXT="file_folder"/>
-            </conjunct_condition>
-        </conditional_style>
-        <conditional_style ACTIVE="true" STYLE_REF="file_folder_with_icon" LAST="false">
-            <conjunct_condition>
-                <style_contains_condition TEXT="file_folder"/>
-                <script_condition>
-                    <script>import org.freeplane.core.util.FreeplaneVersion&#xd;
-return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) || !(node.link?.uri?.scheme == &apos;file&apos;) )</script>
-                </script_condition>
-            </conjunct_condition>
-        </conditional_style>
         <conditional_style ACTIVE="true" STYLE_REF="customMenuPackage" LAST="false">
             <attribute_exists_condition ATTRIBUTE="tbActions"/>
         </conditional_style>
@@ -72,8 +41,16 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
                 </script_condition>
             </any_descendant_condition>
         </conditional_style>
+        <conditional_style ACTIVE="true" STYLE_REF="file" LAST="false">
+            <script_condition>
+                <script>{node.link.file &amp;&amp; !node.link.uri?.fragment}</script>
+            </script_condition>
+        </conditional_style>
+        <conditional_style ACTIVE="true" STYLE_REF="modifiedFile" LAST="false">
+            <attribute_contains_condition ATTRIBUTE="modifiedFile" VALUE="true"/>
+        </conditional_style>
     </conditional_styles>
-    <properties edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" mapUsesOwnSaveOptions="true" BookmarksKeys="{}" followedTemplateLocation="template:/DFGHI%20Proyecto-Groovy-Tareas-MDI-menuButton%20(vis01).mm" pruebaDiccionario="ID_311366985|:|idDictionary|-|ID_323296041|:|ToM Actions|-|" show_icon_for_attributes="true" show_notes_in_map="false" save_modification_times="false" save_last_visited_node="default" show_note_icons="true" mdhFreeMindmapPath="hhgf" save_folding="save_folding_if_map_is_changed" followedMapLastTime="1661362125221" fit_to_viewport="false"/>
+    <properties edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" mapUsesOwnSaveOptions="true" BookmarksKeys="{}" followedTemplateLocation="template:/DFGHI%20Proyecto-Groovy-Tareas-MDI-menuButton%20(vis01).mm" pruebaDiccionario="ID_311366985|:|idDictionary|-|ID_323296041|:|ToM Actions|-|" show_icon_for_attributes="true" show_notes_in_map="false" save_modification_times="false" save_last_visited_node="default" show_note_icons="true" mdhFreeMindmapPath="hhgf" save_folding="save_folding_if_map_is_changed" followedMapLastTime="1661362125221" fit_to_viewport="false" MDI_template="v0.0.13"/>
 
 <map_styles>
 <stylenode LOCALIZED_TEXT="styles.root_node" ID="ID_118736178" STYLE="oval" UNIFORM_SHAPE="true" VGAP_QUANTITY="24 pt">
@@ -83,7 +60,7 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
 <arrowlink SHAPE="CUBIC_CURVE" COLOR="#bf5d3f" WIDTH="2" TRANSPARENCY="200" DASH="" FONT_SIZE="9" FONT_FAMILY="SansSerif" DESTINATION="ID_506805493" STARTINCLINATION="45 pt;0 pt;" ENDINCLINATION="57 pt;30 pt;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
 <font NAME="Dialog" SIZE="10" BOLD="false" STRIKETHROUGH="false" ITALIC="false"/>
 <edge STYLE="horizontal" COLOR="#2e3440" WIDTH="1" DASH="SOLID"/>
-<richcontent CONTENT-TYPE="plain/auto" TYPE="DETAILS"/>
+<richcontent TYPE="DETAILS" CONTENT-TYPE="plain/auto"/>
 <richcontent TYPE="NOTE" CONTENT-TYPE="plain/auto"/>
 </stylenode>
 <stylenode LOCALIZED_TEXT="defaultstyle.details" ID="ID_861824498" COLOR="#006666" BACKGROUND_COLOR="#a5cece" BACKGROUND_ALPHA="204" BORDER_WIDTH_LIKE_EDGE="false" BORDER_WIDTH="1.9 px" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#f0f0f0" BORDER_DASH_LIKE_EDGE="true">
@@ -123,10 +100,12 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
 <stylenode TEXT="movedRenamed" ID="ID_851444256" ICON_SIZE="16 pt" BACKGROUND_COLOR="#ace500">
 <icon BUILTIN="emoji-1F500"/>
 </stylenode>
-<stylenode TEXT="file" ID="ID_1717966522" BORDER_WIDTH="2.5 px" BACKGROUND_COLOR="#bcc6e0" FORMAT="NO_FORMAT">
+<stylenode TEXT="file" ID="ID_1717966522" BACKGROUND_COLOR="#bcc6e0" FORMAT="NO_FORMAT" BORDER_WIDTH="2.5 px">
 <font NAME="Consolas"/>
 </stylenode>
-<stylenode TEXT="file_folder" ID="ID_1554270070" BORDER_WIDTH="3 px"/>
+<stylenode TEXT="file_folder" ID="ID_1554270070" BORDER_WIDTH="3 px">
+<icon BUILTIN="emoji-1F4C1"/>
+</stylenode>
 <stylenode TEXT="missing" ID="ID_1068634079" BACKGROUND_COLOR="#f28bb3" BORDER_WIDTH="3 px">
 <icon BUILTIN="broken-line"/>
 </stylenode>
@@ -138,7 +117,7 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
 <icon BUILTIN="emoji-1F512"/>
 </stylenode>
 <stylenode TEXT="file_folder_with_icon" ID="ID_927144007">
-<icon BUILTIN="emoji-1F4C2"/>
+<icon BUILTIN="emoji-1F4CD"/>
 </stylenode>
 <stylenode TEXT="GroovyNode" ID="ID_647184451" ICON_SIZE="16 pt" COLOR="#286b86" BACKGROUND_COLOR="#92c5d7" STYLE="bubble" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#286b86">
 <icon BUILTIN="groovyNode/groovy-G"/>
@@ -231,8 +210,19 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
 <icon BUILTIN="emoji-1F6A9"/>
 <font BOLD="true"/>
 </stylenode>
-<stylenode TEXT="fullMarkDown" ID="ID_897231475" FORMAT="markdownPatternFormat" BORDER_DASH="SOLID"><richcontent CONTENT-TYPE="plain/markdown" TYPE="DETAILS"/>
+<stylenode TEXT="fullMarkDown" ID="ID_897231475" FORMAT="markdownPatternFormat" BORDER_DASH="SOLID">
+<richcontent TYPE="DETAILS" CONTENT-TYPE="plain/markdown"/>
 <richcontent TYPE="NOTE" CONTENT-TYPE="plain/markdown"/>
+</stylenode>
+<stylenode TEXT="notMovedRenamed" BACKGROUND_COLOR="#f28bb3" BORDER_WIDTH="3 px">
+<icon BUILTIN="emoji-26D4"/>
+</stylenode>
+<stylenode TEXT="moveToTrash" BACKGROUND_COLOR="#e0e000">
+<icon BUILTIN="emoji-1F6AE"/>
+<font STRIKETHROUGH="false" ITALIC="true"/>
+</stylenode>
+<stylenode TEXT="trashFolder" BACKGROUND_COLOR="#e0e000" STYLE="rectangle" BORDER_WIDTH="3 px" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#c61b26">
+<icon BUILTIN="emoji-1F5D1"/>
 </stylenode>
 </stylenode>
 <stylenode LOCALIZED_TEXT="styles.AutomaticLayout" POSITION="bottom_or_right" STYLE="bubble">
@@ -273,192 +263,92 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
 </stylenode>
 </map_styles>
 </hook>
-<node TEXT="Freeplane_pseudofreeplaneapi" STYLE_REF="baseFolder" POSITION="bottom_or_right" ID="ID_1601010910" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/">
+<node TEXT="Freeplane_pseudofreeplaneapi" STYLE_REF="baseFolder" POSITION="bottom_or_right" ID="ID_1601010910" LINK=".">
 <attribute NAME="nameFilter" VALUE=""/>
 <attribute NAME="maxDepth" VALUE="-1" OBJECT="org.freeplane.features.format.FormattedNumber|-1|#0.####"/>
 <attribute NAME="markWhenMoved" VALUE="0" OBJECT="org.freeplane.features.format.FormattedNumber|0|#0.####"/>
 <attribute NAME="checkIfReallyBroken" VALUE="0" OBJECT="org.freeplane.features.format.FormattedNumber|0|#0.####"/>
-<richcontent TYPE="NOTE" CONTENT-TYPE="xml/">
-<html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      null
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      ================ MDI =====================
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      The import of files and folders can be adapted by providing various options in the attributes of the BaseFolder node:
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      -----------------------------------------------------
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;-- nameFilter:
-    </p>
-    <p>
-      -----------------------------------------------------
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A filter to perform on the name of traversed files. If set, only files which match are brought.
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This option allowes four types of inputs:
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. nothing (empty) means no filtering (default)
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. regex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- example:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~/.*\.mp3/
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. 'simplified' regex&nbsp;&nbsp;&nbsp;&nbsp;- example:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~.*\.mp3
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. string with *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- example:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*.mp3&nbsp;&nbsp;&nbsp;&nbsp;(equivalent to regex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~/(?i).*\.mp3/&nbsp;&nbsp;)
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5. list of strings with * and ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- example:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*.mp3;*.png&nbsp;&nbsp;&nbsp;(equivalent to regex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~/(?i)(.*\.mp3|.*\.png)/&nbsp;&nbsp;)
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      -----------------------------------------------------
-    </p>
-    <p>
-      &nbsp;&nbsp;-- maxDepth:
-    </p>
-    <p>
-      -----------------------------------------------------
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The maximum number of directory levels when recursing
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(default is -1 which means no limit, set to 0 for no recursion)
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      -----------------------------------------------------
-    </p>
-    <p>
-      &nbsp;&nbsp;-- markWhenMoved:
-    </p>
-    <p>
-      -----------------------------------------------------
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;change styles to moved/renamed file Nodes
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      &nbsp;set to:
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;0 : to change style only if node hasn't a previous one (default),
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;1 : to allways change the style,
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;-1 : to never change the style
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      -----------------------------------------------------
-    </p>
-    <p>
-      &nbsp;&nbsp;-- checkIfReallyBroken:
-    </p>
-    <p>
-      -----------------------------------------------------
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Check if existing nodes pointing to filtered files still exist.&nbsp;
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This option is only useful if you defined a nameFilter before&nbsp;
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;but in the map there are also some files that doesn't match&nbsp;
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this filter definition&nbsp;
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(for example if you brought them manually or import them&nbsp;
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;before the actual namefilter setting)&nbsp;&nbsp;
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;- default is 0 which means don't check --&gt; Mark node as missing also if it doesn't match the current filter,
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;- set to 1 to extra check if a not matching file still exists in drive&nbsp;
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      ==========================================
-    </p>
-    <p>
-      &nbsp;&nbsp;&nbsp;
-    </p>
-  </body>
-</html></richcontent>
+<attribute NAME="linkType" VALUE="1" OBJECT="org.freeplane.features.format.FormattedNumber|1|#0.####"/>
+<richcontent TYPE="NOTE" CONTENT-TYPE="plain/markdown">
+<text>
+# MDI:  parameters
+The import of files and folders can be adapted by providing various options in the attributes of the BaseFolder node:
+
+-----------------------------------------------------
+# MDI: nameFilter:
+A filter to perform on the name of traversed files. If set, only files which match are brought. 
+This option allowes four types of inputs:
+1. nothing (empty) means no filtering (default) 
+2. regex
+  - example: `~/.*\.mp3/ `
+3. 'simplified' regex
+  - example: `~.*\.mp3` 
+4. string with *
+  - example: `*.mp3`   
+    (equivalent to regex      `~/(?i).*\.mp3/`  )
+5. list of strings with '*' and ';'
+  - example: ` *.mp3;*.png `   
+    (equivalent to regex: ` ~/(?i)(.*\.mp3|.*\.png)/ `  )
+
+-----------------------------------------------------
+
+# MDI:  maxDepth:
+
+The maximum number of directory levels when recursing   
+(default is -1 which means no limit, set to 0 for no recursion)
+
+
+-----------------------------------------------------
+
+# MDI:  linkType:
+
+Define if you want to use Absolute or Relative   
+links for files and folders.
+
+ set to:   
+
+0 : to use Absolute links
+
+1 : to use Relative links
+
+-----------------------------------------------------
+   
+# MDI:  markWhenMoved:
+
+change styles to moved/renamed file Nodes 
+
+set to:   
+ 
+0  : to change style only if node hasn't a previous one (default),
+
+1  : to allways change the style,
+
+-1 : to never change the style
+
+-----------------------------------------------------
+
+ 
+# MDI:  checkIfReallyBroken:
+Check if existing nodes pointing to filtered files still exist.   
+This option is only useful if you defined a nameFilter before 
+but in the map there are also some files that doesn't match 
+this filter definition 
+(for example if you brought them manually or import them 
+before the actual namefilter setting)  
+
+- default is 0 which means don't check --&gt; Mark node as missing also if it doesn't match the current filter,
+
+- set to 1 to extra check if a not matching file still exists in drive 
+
+
+-----------------------------------------------------
+
+</text></richcontent>
 <node TEXT="hacer que UserStyles sea una librería por si misma (pseudoFreeplaneApi)" STYLE_REF="pendingTask" ID="ID_1646456724">
 <node TEXT="la versión más actualizada es la de groovyNode" ID="ID_1038633785"/>
 </node>
 <node TEXT="files" ID="ID_1881706571">
-<node TEXT=".gitattributes" ID="ID_1864551314"><richcontent CONTENT-TYPE="xml/" TYPE="DETAILS">
+<node TEXT=".gitattributes" ID="ID_1864551314"><richcontent TYPE="DETAILS">
 <html>
   <head>
     
@@ -470,12 +360,12 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
   </body>
 </html></richcontent>
 </node>
-<node TEXT="pseudoFreeplaneAPI" ID="ID_1537761481" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/">
+<node TEXT="pseudoFreeplaneAPI" ID="ID_1537761481" LINK="pseudoFreeplaneAPI/">
 <attribute NAME="script1" VALUE="def nodo = node&#xd;&#xa;def texto = nodo.text&#xd;&#xa;&#xd;&#xa;def nodos = nodo.find{it.text.contains(texto)}&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;def cambiarA = ui.showInputDialog(&#xd;&#xa;        nodo.delegate, &#xd;&#xa;        &apos;input new AddOn name (it will CamelCase it and delete spaces)&apos;, &#xd;&#xa;        &apos; my new add on example   &apos;&#xd;&#xa;    )?.trim()&#xd;&#xa;&#xd;&#xa;cambiarA = cambiarA.split(&apos; &apos;)*.capitalize().join()&#xd;&#xa;&#xd;&#xa;nodos.each{n -&gt;&#xd;&#xa;    n.text = n.text.replace(texto,cambiarA)&#xd;&#xa;}"/>
 <node TEXT="lib" STYLE_REF="Organizador" ID="ID_1522997397">
-<node TEXT="src" ID="ID_439606183" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/src/">
-<node TEXT="main" ID="ID_352050030" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/src/main/">
-<node TEXT="groovy" ID="ID_786618690" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/src/main/groovy/"><richcontent CONTENT-TYPE="xml/" TYPE="DETAILS">
+<node TEXT="src" ID="ID_439606183" LINK="pseudoFreeplaneAPI/src/">
+<node TEXT="main" ID="ID_352050030" LINK="pseudoFreeplaneAPI/src/main/">
+<node TEXT="groovy" ID="ID_786618690" LINK="pseudoFreeplaneAPI/src/main/groovy/"><richcontent TYPE="DETAILS">
 <html>
   <head>
     
@@ -486,11 +376,11 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
     </p>
   </body>
 </html></richcontent>
-<node TEXT="UserStyles.groovy" ID="ID_75799795" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/src/main/groovy/UserStyles.groovy"/>
+<node TEXT="UserStyles.groovy" ID="ID_75799795" LINK="pseudoFreeplaneAPI/src/main/groovy/UserStyles.groovy"/>
 </node>
 </node>
 </node>
-<node TEXT="build" ID="ID_1190324420" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/build/"><richcontent CONTENT-TYPE="xml/" TYPE="DETAILS">
+<node TEXT="build" STYLE_REF="missing" ID="ID_1190324420" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/build/"><richcontent TYPE="DETAILS">
 <html>
   <head>
     
@@ -504,7 +394,7 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
 <node TEXT="classes" STYLE_REF="locked" ID="ID_1303383018" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/build/classes/"/>
 <node TEXT="tmp" STYLE_REF="locked" ID="ID_1273137507" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/build/tmp/"/>
 </node>
-<node TEXT="lib" ID="ID_1395612783" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/lib/"><richcontent CONTENT-TYPE="xml/" TYPE="DETAILS">
+<node TEXT="lib" ID="ID_1395612783" LINK="pseudoFreeplaneAPI/lib/"><richcontent TYPE="DETAILS">
 <html>
   <head>
     
@@ -518,10 +408,10 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
     </p>
   </body>
 </html></richcontent>
-<node TEXT="pseudoFreeplaneAPI.jar" ID="ID_1453802560" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/lib/pseudoFreeplaneAPI.jar"/>
+<node TEXT="pseudoFreeplaneAPI.jar" ID="ID_1453802560" LINK="pseudoFreeplaneAPI/lib/pseudoFreeplaneAPI.jar"/>
 </node>
 </node>
-<node TEXT="scripts" ID="ID_789405181" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/scripts/"><richcontent CONTENT-TYPE="xml/" TYPE="DETAILS">
+<node TEXT="scripts" ID="ID_789405181" LINK="pseudoFreeplaneAPI/scripts/"><richcontent TYPE="DETAILS">
 <html>
   <head>
     
@@ -533,8 +423,8 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
   </body>
 </html></richcontent>
 </node>
-<node TEXT="zips" ID="ID_1562581333" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/zips/">
-<node TEXT="icons" ID="ID_1408387719" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/zips/icons/"><richcontent CONTENT-TYPE="xml/" TYPE="DETAILS">
+<node TEXT="zips" ID="ID_1562581333" LINK="pseudoFreeplaneAPI/zips/">
+<node TEXT="icons" ID="ID_1408387719" LINK="pseudoFreeplaneAPI/zips/icons/"><richcontent TYPE="DETAILS">
 <html>
   <head>
     
@@ -545,9 +435,9 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
     </p>
   </body>
 </html></richcontent>
-<node TEXT="pseudoFreeplaneAPI" ID="ID_1615456945" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/zips/icons/pseudoFreeplaneAPI/"/>
+<node TEXT="pseudoFreeplaneAPI" ID="ID_1615456945" LINK="pseudoFreeplaneAPI/zips/icons/pseudoFreeplaneAPI/"/>
 </node>
-<node TEXT="doc" ID="ID_514247810" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/zips/doc/"><richcontent CONTENT-TYPE="xml/" TYPE="DETAILS">
+<node TEXT="doc" ID="ID_514247810" LINK="pseudoFreeplaneAPI/zips/doc/"><richcontent TYPE="DETAILS">
 <html>
   <head>
     
@@ -558,9 +448,9 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
     </p>
   </body>
 </html></richcontent>
-<node TEXT="pseudoFreeplaneAPI" ID="ID_965772910" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/zips/doc/pseudoFreeplaneAPI/"/>
+<node TEXT="pseudoFreeplaneAPI" ID="ID_965772910" LINK="pseudoFreeplaneAPI/zips/doc/pseudoFreeplaneAPI/"/>
 </node>
-<node TEXT="templates" ID="ID_1762727168" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/zips/templates/"><richcontent CONTENT-TYPE="xml/" TYPE="DETAILS">
+<node TEXT="templates" ID="ID_1762727168" LINK="pseudoFreeplaneAPI/zips/templates/"><richcontent TYPE="DETAILS">
 <html>
   <head>
     
@@ -571,10 +461,10 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
     </p>
   </body>
 </html></richcontent>
-<node TEXT="pseudoFreeplaneAPI" ID="ID_227924591" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/zips/templates/pseudoFreeplaneAPI/"/>
+<node TEXT="pseudoFreeplaneAPI" ID="ID_227924591" LINK="pseudoFreeplaneAPI/zips/templates/pseudoFreeplaneAPI/"/>
 </node>
 </node>
-<node TEXT="images" ID="ID_767993374" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/images/">
+<node TEXT="images" ID="ID_767993374" LINK="pseudoFreeplaneAPI/images/">
 <node TEXT="pseudoFreeplaneAPI-screenshot-1.png" STYLE_REF="pendingTask" ID="ID_862682571">
 <node TEXT="128x77" ID="ID_387201744"/>
 </node>
@@ -585,8 +475,8 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
 <node TEXT="27x16" ID="ID_1900344919"/>
 </node>
 </node>
-<node TEXT="pseudoFreeplaneAPI.mm" ID="ID_451795307" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/pseudoFreeplaneAPI.mm"/>
-<node TEXT="generados automáticamente" STYLE_REF="Organizador" ID="ID_903201800"><richcontent CONTENT-TYPE="xml/" TYPE="DETAILS">
+<node TEXT="pseudoFreeplaneAPI.mm" ID="ID_451795307" LINK="pseudoFreeplaneAPI/pseudoFreeplaneAPI.mm"/>
+<node TEXT="generados automáticamente" STYLE_REF="Organizador" ID="ID_903201800"><richcontent TYPE="DETAILS">
 <html>
   <head>
     
@@ -600,16 +490,16 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
     </p>
   </body>
 </html></richcontent>
-<node TEXT="history.md" ID="ID_112260994" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/history.md"/>
-<node TEXT="pseudoFreeplaneAPI-v0.0.1.addon.mm" ID="ID_183153599" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/pseudoFreeplaneAPI-v0.0.1.addon.mm"/>
-<node TEXT="pseudoFreeplaneAPI.mm.bak" ID="ID_55675590" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/pseudoFreeplaneAPI.mm.bak"/>
-<node TEXT="version.properties" ID="ID_1149127560" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/version.properties"/>
+<node TEXT="history.md" ID="ID_112260994" LINK="pseudoFreeplaneAPI/history.md"/>
+<node TEXT="pseudoFreeplaneAPI-v0.0.1.addon.mm" ID="ID_183153599" LINK="pseudoFreeplaneAPI/pseudoFreeplaneAPI-v0.0.1.addon.mm"/>
+<node TEXT="pseudoFreeplaneAPI.mm.bak" ID="ID_55675590" LINK="pseudoFreeplaneAPI/pseudoFreeplaneAPI.mm.bak"/>
+<node TEXT="version.properties" ID="ID_1149127560" LINK="pseudoFreeplaneAPI/version.properties"/>
 <node TEXT="versiones anteriores" STYLE_REF="Organizador" ID="ID_270665900"/>
 </node>
-<node TEXT="build.gradle" ID="ID_782704491" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI/build.gradle"/>
+<node TEXT="build.gradle" ID="ID_782704491" LINK="pseudoFreeplaneAPI/build.gradle"/>
 </node>
-<node TEXT="resources" ID="ID_1082925840" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/resources/"/>
-<node TEXT="ignoredByGitHub" ID="ID_689923647" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/ignoredByGitHub/"><richcontent CONTENT-TYPE="xml/" TYPE="DETAILS">
+<node TEXT="resources" ID="ID_1082925840" LINK="resources/"/>
+<node TEXT="ignoredByGitHub" ID="ID_689923647" LINK="ignoredByGitHub/"><richcontent TYPE="DETAILS">
 <html>
   <head>
     
@@ -621,7 +511,7 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
   </body>
 </html></richcontent>
 </node>
-<node TEXT="delete" ID="ID_1774414730" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/delete/"><richcontent CONTENT-TYPE="xml/" TYPE="DETAILS">
+<node TEXT="delete" ID="ID_1774414730" LINK="delete/"><richcontent TYPE="DETAILS">
 <html>
   <head>
     
@@ -633,13 +523,14 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
   </body>
 </html></richcontent>
 </node>
-<node TEXT=".gitignore" ID="ID_1145140448" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/.gitignore"/>
-<node TEXT=".gitattributes" ID="ID_142655800" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/.gitattributes"/>
-<node TEXT="README.MD" ID="ID_297840923" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/README.MD"><richcontent TYPE="NOTE" CONTENT-TYPE="plain/markdown"/>
-<node TEXT="README-pseudoFreeplaneAPI-MDH.mm" ID="ID_1438498132" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/README-pseudoFreeplaneAPI-MDH.mm"/>
+<node TEXT=".gitignore" ID="ID_1145140448" LINK=".gitignore"/>
+<node TEXT=".gitattributes" ID="ID_142655800" LINK=".gitattributes"/>
+<node TEXT="README.MD" ID="ID_297840923" LINK="README.MD">
+<richcontent TYPE="NOTE" CONTENT-TYPE="plain/markdown"/>
+<node TEXT="README-pseudoFreeplaneAPI-MDH.mm" ID="ID_1438498132" LINK="README-pseudoFreeplaneAPI-MDH.mm"/>
 </node>
-<node TEXT="LICENSE.md" ID="ID_573744266" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/LICENSE.md"/>
-<node TEXT="pseudoFreeplaneAPI project.mm" ID="ID_1406461886" LINK="file:/E:/Users/Edo/Documents/GitHub/Freeplane_pseudofreeplaneapi/pseudoFreeplaneAPI%20project.mm"/>
+<node TEXT="LICENSE.md" ID="ID_573744266" LINK="LICENSE.md"/>
+<node TEXT="pseudoFreeplaneAPI project.mm" ID="ID_1406461886" LINK="pseudoFreeplaneAPI%20project.mm"/>
 </node>
 <node TEXT="versión instalada en AddOns" STYLE_REF="locked" ID="ID_1156638211"/>
 <node TEXT="Tareas" STYLE_REF="Organizador" FOLDED="true" ID="ID_1348723799">
@@ -780,51 +671,63 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
 </node>
 </node>
 <node TEXT="new imported files" STYLE_REF="newFolderImport" ID="ID_1122472053">
-<attribute NAME="log_MDI" VALUE="No"/>
-<richcontent TYPE="NOTE" CONTENT-TYPE="xml/">
+<attribute NAME="log_MDI" VALUE="2" OBJECT="org.freeplane.features.format.FormattedNumber|2"/>
+<richcontent TYPE="NOTE">
 <html>
   <head>
     
   </head>
   <body>
     <p>
-      Inated:&nbsp;&nbsp;&nbsp;2023-01-18&nbsp;&nbsp;21:31:33
+      Inated:&#xa0;&#xa0;&#xa0;2023-10-25&#xa0;&#xa0;12:59:34
     </p>
     <p>
       
     </p>
     <p>
-      ------- Files: --------&nbsp;
+      ------- Files: --------&#xa0;
     </p>
     <p>
-      &nbsp;0 node(s) pointing to unexisting/filtered files (marked as 'broken')
+      &#xa0;0 node(s) pointing to unexisting/filtered files (marked as 'broken')
     </p>
     <p>
-      &nbsp;0 link(s) corrected in nodes
+      &#xa0;14 link(s) corrected in nodes
     </p>
     <p>
-      &nbsp;0 new file(s) imported as node(s)&nbsp;
+      &#xa0;0 new file(s) imported as node(s)&#xa0;
     </p>
     <p>
-      &nbsp;0 node(s) moved/renamed in drive
+      &#xa0;0 node(s) moved/renamed in drive
     </p>
     <p>
-      
-    </p>
-    <p>
-      ------- Folders: --------&nbsp;
-    </p>
-    <p>
-      18 folders didn't need to be moved&nbsp;
+      &#xa0;0 node(s) couldn't be moved/renamed in drive (marked as 'notMovedRenamed')
     </p>
     <p>
       
     </p>
     <p>
+      ------- Folders: --------&#xa0;
+    </p>
+    <p>
+      1 folders were created in new position and keeped in old one because they were not empty&#xa0;
+    </p>
+    <p>
+      1 folders were not found&#xa0;
+    </p>
+    <p>
+      17 links to folders were corrected&#xa0;
+    </p>
+    <p>
       
     </p>
     <p>
-      0 seconds
+      
+    </p>
+    <p>
+      0.2 seconds
+    </p>
+    <p>
+      
     </p>
     <p>
       
@@ -835,10 +738,14 @@ return (c.freeplaneVersion &lt; FreeplaneVersion.getVersion(&quot;1.9.0&quot;) |
     <p>
       
     </p>
+    <p>
+      No failed operation in drive
+    </p>
   </body>
 </html>
 </richcontent>
 </node>
+<node TEXT="Freeplane_Pseudo-Freeplane-API" STYLE_REF="movedRenamed" POSITION="bottom_or_right" ID="ID_1579893890" LINK="Freeplane_Pseudo-Freeplane-API"/>
 </node>
 </node>
 </map>
